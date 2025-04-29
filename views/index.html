@@ -3,38 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WANZOFC SHARING</title>
-    <link rel="stylesheet" href="/styles.css">
+    <title>Wanzofc Sharing</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            color: #28a745;
+        }
+
+        section#resources-section {
+            padding: 30px 0;
+        }
+
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.75rem;
+            color: #343a40;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-gap: 20px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .resource-card {
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            background-color: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .resource-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-title {
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 10px;
+            font-size: 1.25rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .card-meta {
+            color: #6c757d;
+            font-size: 0.875rem;
+            margin-bottom: 5px;
+        }
+
+        .card-description {
+            color: #343a40;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff5733;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+
+        .card-button:hover {
+            background-color: #e04b29;
+        }
+
+        #no-resource-message {
+            display: none;
+            text-align: center;
+            font-style: italic;
+            color: #6c757d;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <section>
-        <div class="container">
-            <h1>WELCOME TO WANZOFC SHARING!</h1>
+<section>
+    <div class="container">
+        <h1>WELCOME TO WANZOFC SHARING!</h1>
+        <section id="resources-section">
+            <h2>Resources:</h2>
+            <ul class="resource-grid" id="resource-list"></ul>
+            <p id="no-resource-message">Belum ada resource yang diupload</p>
+        </section>
+    </div>
+</section>
+<script>
+    function loadResources() {
+        fetch('/resources')
+            .then(response => response.ok ? response.json() : Promise.reject(`HTTP error! status: ${response.status}`))
+            .then(data => {
+                const resourceList = document.getElementById('resource-list');
+                const noResourceMessage = document.getElementById('no-resource-message');
+                if (data.length === 0) {
+                    noResourceMessage.style.display = 'block';
+                } else {
+                    resourceList.innerHTML = data.map(resource => `
+                        <li class="resource-card">
+                            <div class="card-image">
+                                <img src="https://via.placeholder.com/600x400" alt="Placeholder Image">
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">${resource.title}</h3>
+                                <p class="card-meta">Uploaded on: ${formatDate(resource.upload_date)}</p>
+                                <p class="card-description">${resource.description}</p>
+                                <a class="card-button" href="/uploads/${resource.filename}" download>Download</a>
+                            </div>
+                `).join('');
+                }
+          })
+          .catch(error => console.error('Error fetching resources:', error));
+    }
 
-            <section id="resources-section">
-                <h2>Resources:</h2>
+    function formatDate(dateString) {
+        return new Date(dateString).toLocaleDateString('id-ID', {
+            year: 'numeric', month: 'long', day: 'numeric',
+            hour: 'numeric', minute: 'numeric', second: 'numeric',
+            timeZoneName: 'short'
+        });
+    }
 
-                <% if (resources.length === 0) { %> 
-                    <p>Belum ada resource yang diupload</p>
-                <% } else { %>
-                    <ul class="resource-grid">
-                        <% resources.forEach(resource => { %>
-                            <li class="resource-card">
-                                <div class="card-image">
-                                    <img src="https://via.placeholder.com/600x400" alt="Placeholder Image">
-                                </div>
-                                <div class="card-content">
-                                    <h3 class="card-title"><%= resource.title %></h3>
-                                    <p class="card-meta">Uploaded on: [gabut]</p>
-                                    <p class="card-description"><%= resource.description %></p>
-                                    <a class="card-button" href="/uploads/<%= resource.filename %>" download>Download</a>
-                                </div>
-                            </li>
-                        <% }); %>
-                    </ul>
-                <% } %>    
-            </section>    
-        </div>
-    </section>
+    loadResources();
+</script>
 </body>
 </html>
