@@ -1,62 +1,92 @@
+/* General Styling */
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
-  margin: 0;
-  padding: 0;
+  background-color: #f8f9fa; /* Light gray background */
+  color: #343a40; /* Dark gray text */
 }
 
-h1, h2 {
-  color: #ff5733; /* Warna oranye yang hidup */
+h1, h2, h3 {
+    font-family: 'Poppins', sans-serif; /* Modern font for headings */
 }
 
-#upload-section, #resources-section {
-    background-color: #fff;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+
+/* UIkit Card Customization */
+.uk-card {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
 }
 
-form {
-  display: flex;
-  flex-direction: column;  
+
+.uk-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-label{
-  margin-bottom: 5px;
+.uk-card-body {
+  padding: 20px;
 }
 
-input, textarea {
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+.uk-card-title {
+  font-weight: 600;
+  color: #28a745; /* Green title */
+  margin-bottom: 10px; /* Reduced margin */
 }
 
-button {
-    background-color: #27ae60; /* Warna hijau yang menarik*/
+
+.uk-card .uk-text-meta{
+    color: #6c757d;
+}
+
+.uk-text-truncate {
+    color: #343a40;
+}
+
+
+/* Image Styling */
+.uk-card-media-top {
+  height: 250px;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.uk-card-media-top img{
+    display: block; /* Ensures image takes full width */
+    width: 100%;
+}
+
+
+
+/* Button Styling */
+.uk-button.uk-button-primary {
+    background-color: #ff5733; /* Vibrant Orange */
     color: white;
-    padding: 10px 15px;
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-ul {
-  list-style: none;
+.uk-button.uk-button-primary:hover {
+  background-color: #e04b29; /* Darker Orange on hover */
+}
+
+
+/* Section Styling */
+
+
+section#resources-section .uk-container{
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+section#resources-section ul{
+  list-style: none; /* Remove default bullet points */
   padding: 0;
 }
 
 
-a {
-  color: #3498db; /* Warna biru yang interaktif */
-  text-decoration: none;
+section#resources-section li{
+  margin-bottom: 20px;
 }
-
-a:hover {
-  text-decoration: underline;
-}
-
-
-/* Tambahkan styling lainnya sesuai kebutuhan */

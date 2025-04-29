@@ -1,15 +1,22 @@
 extends layouts/main.pug
 
 block content
-  h1 WELCOME TO WANZOFC SHARING!
+  section.uk-section
+    .uk-container
+      h1.uk-heading-large WELCOME TO WANZOFC SHARING!
 
-  section#resources-section
-    h2 Resources:
-      if resources.length === 0
-          p Belum ada resource yang diupload
-      else 
-          ul
-            each resource in resources
-                li
-                  a(href=`/uploads/${resource.filename}`)= resource.title
-                  p= resource.description 
+      section#resources-section.uk-section
+        h2.uk-heading-medium Resources:
+          if resources.length === 0
+              p.uk-text-meta Belum ada resource yang diupload
+          else
+              .uk-child-width-1-2@s.uk-child-width-1-3@m.uk-grid(uk-grid)
+                each resource in resources
+                  .uk-card.uk-card-default
+                      .uk-card-media-top
+                          img(src="https://via.placeholder.com/600x400", alt="Placeholder Image")  
+                      .uk-card-body
+                        h3.uk-card-title.uk-margin-remove-bottom= resource.title
+                         p.uk-text-meta  Uploaded on: [Tanggal Upload]  
+                        p.uk-text-truncate= resource.description
+                        a.uk-button.uk-button-primary(href=`/uploads/${resource.filename}`, download) unduh
