@@ -1,92 +1,99 @@
 /* General Styling */
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f8f9fa; /* Light gray background */
-  color: #343a40; /* Dark gray text */
+  background-color: #f8f9fa;
+  color: #343a40;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+
 }
 
 h1, h2, h3 {
-    font-family: 'Poppins', sans-serif; /* Modern font for headings */
+  font-family: 'Poppins', sans-serif;
 }
 
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
 
-/* UIkit Card Customization */
-.uk-card {
+
+
+/* Resource Grid and Card Styling */
+
+
+section#resources-section {
+  width: 100%;
+  padding: 20px;
+
+}
+
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
+  grid-gap: 20px;
+  list-style: none;
+    padding: 0;
+}
+
+.resource-card {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
+  overflow: hidden; /* Ensures image stays within card */
+}
+
+.card-image {
+    height: 200px;
+  object-fit: cover;
+
 }
 
 
-.uk-card:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+.card-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+
 }
 
-.uk-card-body {
+
+
+.card-content {
   padding: 20px;
 }
 
-.uk-card-title {
+.card-title {
   font-weight: 600;
-  color: #28a745; /* Green title */
-  margin-bottom: 10px; /* Reduced margin */
+  color: #28a745;
+  margin-bottom: 10px;
 }
 
-
-.uk-card .uk-text-meta{
-    color: #6c757d;
+.card-meta {
+  color: #6c757d;
+  font-size: 0.875rem;
+  margin-bottom: 5px;
 }
 
-.uk-text-truncate {
+.card-description {
     color: #343a40;
-}
-
-
-/* Image Styling */
-.uk-card-media-top {
-  height: 250px;
-  object-fit: cover;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-}
-
-.uk-card-media-top img{
-    display: block; /* Ensures image takes full width */
-    width: 100%;
+    margin-bottom: 15px;
 }
 
 
 
-/* Button Styling */
-.uk-button.uk-button-primary {
-    background-color: #ff5733; /* Vibrant Orange */
-    color: white;
-    border: none;
-    transition: background-color 0.3s ease;
+.card-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff5733;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
 
-.uk-button.uk-button-primary:hover {
-  background-color: #e04b29; /* Darker Orange on hover */
-}
-
-
-/* Section Styling */
-
-
-section#resources-section .uk-container{
-  background-color: #ffffff;
-  border-radius: 10px;
-  padding: 30px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-
-section#resources-section ul{
-  list-style: none; /* Remove default bullet points */
-  padding: 0;
-}
-
-
-section#resources-section li{
-  margin-bottom: 20px;
+.card-button:hover {
+  background-color: #e04b29;
 }

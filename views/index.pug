@@ -1,23 +1,21 @@
 extends layouts/main.pug
-
 block content
-  section.uk-section
-    .uk-container
+  section
+    .container
       h1 WELCOME TO WANZOFC SHARING!
 
-      section#resources-section.uk-section
-        h2.uk-heading-medium Resources:
+      section#resources-section
+        h2 Resources:
           if resources.length === 0
-              p.uk-text-meta Belum ada resource yang diupload
+              p Belum ada resource yang diupload
           else
-              +responsive-grid([2, 3, 4])
+              ul.resource-grid
                 each resource in resources
-                  .uk-card.uk-card-default
-                      .uk-card-media-top
+                  li.resource-card
+                      .card-image
                           img(src="https://via.placeholder.com/600x400", alt="Placeholder Image")  
-                      .uk-card-body
-                        h3.uk-card-title.uk-margin-remove-bottom= resource.title
-                        p.uk-text-meta Uploaded on: [Tanggal Upload]
-                        p.uk-text-truncate= resource.description
-                        a.uk-button.uk-button-primary(href=`/uploads/${resource.filename}`, download) Download
-                        block
+                      .card-content
+                        h3.card-title= resource.title
+                        p.card-meta Uploaded on: [gabut memek]
+                        p.card-description= resource.description
+                        a.card-button(href=`/uploads/${resource.filename}`, download) DOWNLOAD
