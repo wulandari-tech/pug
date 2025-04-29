@@ -3,10 +3,6 @@ extends layouts/main.pug
 block content
   h1 WELCOME TO WANZOFC SHARING!
 
-  section#upload-section
-    h2 Share Your Knowledge
-    include partials/_form
-
   section#resources-section
     h2 Resources:
       if resources.length === 0
@@ -16,4 +12,4 @@ block content
             each resource in resources
                 li
                   a(href=`/uploads/${resource.filename}`)= resource.title
-                  p= resource.description
+                  p= resource.description 
