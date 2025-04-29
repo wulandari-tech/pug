@@ -1,0 +1,11 @@
+form(action="/upload", method="POST", enctype="multipart/form-data")
+  label(for="title") Title:
+  input(type="text", id="title", name="title", required)
+
+  label(for="description") Description:
+  textarea(id="description", name="description", required)
+
+  label(for="file") File:
+  input(type="file", id="file", name="file", required)
+    
+  button(type="submit") Upload

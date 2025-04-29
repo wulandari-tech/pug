@@ -1,0 +1,16 @@
+extends layouts/main.pug
+
+block content
+  h1 WELCOME TO WANZOFC SHARING!
+
+  section#upload-section
+      h2 Share Your Knowledge
+      include partials/_form.pug
+
+  section#resources-section
+    h2 Resources:
+    ul
+      each resource in resources
+        li
+          a(href=`/uploads/${resource.filename}`)= resource.title
+          p= resource.description
