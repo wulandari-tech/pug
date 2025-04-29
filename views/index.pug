@@ -4,13 +4,16 @@ block content
   h1 WELCOME TO WANZOFC SHARING!
 
   section#upload-section
-      h2 Share Your Knowledge
-      include partials/_form.pug
+    h2 Share Your Knowledge
+    include partials/_form
 
   section#resources-section
     h2 Resources:
-    ul
-      each resource in resources
-        li
-          a(href=`/uploads/${resource.filename}`)= resource.title
-          p= resource.description
+      if resources.length === 0
+          p Belum ada resource yang diupload
+      else 
+          ul
+            each resource in resources
+                li
+                  a(href=`/uploads/${resource.filename}`)= resource.title
+                  p= resource.description
