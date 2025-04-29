@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WANZOFC SHARING</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <section>
+        <div class="container">
+            <h1>WELCOME TO WANZOFC SHARING!</h1>
+
+            <section id="resources-section">
+                <h2>Resources:</h2>
+
+                <% if (resources.length === 0) { %> 
+                    <p>Belum ada resource yang diupload</p>
+                <% } else { %>
+                    <ul class="resource-grid">
+                        <% resources.forEach(resource => { %>
+                            <li class="resource-card">
+                                <div class="card-image">
+                                    <img src="https://via.placeholder.com/600x400" alt="Placeholder Image">
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title"><%= resource.title %></h3>
+                                    <p class="card-meta">Uploaded on: [gabut]</p>
+                                    <p class="card-description"><%= resource.description %></p>
+                                    <a class="card-button" href="/uploads/<%= resource.filename %>" download>Download</a>
+                                </div>
+                            </li>
+                        <% }); %>
+                    </ul>
+                <% } %>    
+            </section>    
+        </div>
+    </section>
+</body>
+</html>

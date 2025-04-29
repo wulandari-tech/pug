@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const router = express.Router();
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 const sqlite3 = require('sqlite3').verbose();
@@ -15,14 +16,11 @@ db.run(`CREATE TABLE IF NOT EXISTS resources (
 )`);
 
 router.get('/', (req, res) => {
-  db.all('SELECT * FROM resources', [], (err, rows) => {
-    if (err) {
-      return console.error(err.message);
-    }
-    res.render('index', { resources: rows });
-  });
-});
+    const filePath = path.join(__dirname, '../views/index.html');
+      // Kirim file HTML secara langsung
+      res.sendFile(filePath);
 
+  });
 router.get('/upload', (req, res) => {
   res.render('upload');
 });
