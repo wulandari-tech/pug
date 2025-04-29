@@ -3,7 +3,7 @@ extends layouts/main.pug
 block content
   section.uk-section
     .uk-container
-      h1.uk-heading-large Welcome to Wanzofc Sharing!
+      h1 WELCOME TO WANZOFC SHARING!
 
       section#resources-section.uk-section
         h2.uk-heading-medium Resources:
@@ -20,3 +20,4 @@ block content
                         p.uk-text-meta Uploaded on: [Tanggal Upload]
                         p.uk-text-truncate= resource.description
                         a.uk-button.uk-button-primary(href=`/uploads/${resource.filename}`, download) Download
+                        block
